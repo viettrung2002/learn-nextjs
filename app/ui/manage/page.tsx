@@ -26,9 +26,9 @@ export default function ProductPage() {
     const [editId, setEditId] = useState<number | null>(null);
 
   // API URL
-    const API_URL = "http://127.0.0.1:5000"; // Thay bằng URL API của bạn
+    const API_URL = "http://127.0.0.1:5000"; 
 
-  // Gọi API để lấy danh sách sản phẩm
+  
     useEffect(() => {
         fetch(`${API_URL}/products`)
             .then((res) => res.json())
@@ -37,11 +37,11 @@ export default function ProductPage() {
         
     },  []);
 
-  // Thêm hoặc cập nhật sản phẩm
+  
   const handleSubmit = async () => {
 
     if (editId) {
-      // Cập nhật sản phẩm
+      
       await fetch(`${API_URL}/product/update/${editId}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -50,7 +50,7 @@ export default function ProductPage() {
       setEditId(null);
       
     } else {
-      // Thêm sản phẩm mới
+      
       await fetch(`${API_URL}/product-management/product`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -58,7 +58,7 @@ export default function ProductPage() {
       });
     }
 
-    // Làm mới danh sách sau khi thêm/sửa
+    
     fetch(`${API_URL}/products`)
       .then((res) => res.json())
       .then((data) => setProducts(data));
@@ -71,11 +71,11 @@ export default function ProductPage() {
     setPrice("");
   };
 
-  // Xóa sản phẩm
+  
   const deleteProduct = async (id: number) => {
     await fetch(`${API_URL}/product/delete/${id}`, { method: "DELETE" });
 
-    // Cập nhật danh sách sau khi xóa
+    
     setProducts(products.filter((p) => p.id !== id));
   };
 
@@ -83,7 +83,7 @@ export default function ProductPage() {
     <div className="container mx-auto p-6">
       <h1 className="text-3xl font-bold mb-4">Quản lý Sản phẩm</h1>
 
-      {/* Form thêm/sửa sản phẩm */}
+      
       <div className="mb-4 flex gap-4">
         <input
           type="text"
@@ -135,7 +135,7 @@ export default function ProductPage() {
         </button>
       </div>
 
-      {/* Danh sách sản phẩm */}
+      
       <table className="w-full border-collapse border border-gray-300">
         <thead>
           <tr className="bg-gray-200">
@@ -161,7 +161,7 @@ export default function ProductPage() {
                 <Image src={product.image} alt={product.name} width={160} height={160}/>
               </td>
               
-              {/* <td className="border p-2">{product.image}</td> */}
+              
               <td className="border p-2">{product.price}</td>
               <td className="border p-2">${product.category_id}</td>
               <td className="border p-2">

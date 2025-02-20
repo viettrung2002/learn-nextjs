@@ -8,6 +8,9 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        mts: ["Montserrat", "system-ui"],
+      },
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
